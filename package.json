@@ -1,0 +1,19 @@
+{
+  "name": "cli-remake-storefront",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stefa-n/cli-remake-storefront.git"
+  },
+  "author": "stefa-n",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/stefa-n/cli-remake-storefront/issues"
+  },
+  "homepage": "https://github.com/stefa-n/cli-remake-storefront#readme"
+}
