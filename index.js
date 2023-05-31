@@ -110,15 +110,61 @@ function addToCart(product) {
 };
 
 function showCart() {
-    if(cartId) {
-        axios.get(`${server}/store/carts/${cartId}`).then(res => {
-            const cart = res.data.cart;
-            console.log(`Cart ID: ${cart.id}`);
-            console.log(`Total: $${cart.total / 100}`);
-            cart.items.forEach(item => {
-                console.log(`${item.quantity}x ${item.title} - $${item.subtotal / 100}`);
-            });
-            askMainMenu();
-        })
-    }
+    axios.get(`${server}/store/carts/${cartId}`).then(res => {
+        const cart = res.data.cart;
+        console.log(`Cart ID: ${cart.id}`);
+        console.log(`Total: $${cart.total / 100}`);
+        cart.items.forEach(item => {
+            console.log(`${item.quantity}x ${item.title} - $${item.subtotal / 100}`);
+        });
+        askMainMenu();
+    })
 };
+
+function checkout() {
+    /* ask for: company,
+      first_name,
+      last_name,
+      address_1,
+      address_2,
+      city,
+      country_code,
+      province,
+      postal_code,
+      phone, */
+
+      rl.question('Company: ', (company) => {
+        rl.question('First name: ', (first_name) => {
+            rl.question('Last name: ', (last_name) => {
+                rl.question('Address 1: ', (address_1) => {
+                    rl.question('Address 2: ', (address_2) => {
+                        rl.question('City: ', (city) => {
+                            rl.question('Country code: ', (country_code) => {
+                                rl.question('Province: ', (province) => {
+                                    rl.question('Postal code: ', (postal_code) => {
+                                        rl.question('Phone: ', (phone) => {
+                                            axios.post(`${server}/store/carts/${cartId}/checkout`, {
+                                                company,
+                                                first_name,
+                                                last_name,
+                                                address_1,
+                                                address_2,
+                                                city,
+                                                country_code,
+                                                province,
+                                                postal_code,
+                                                phone,
+                                            }).then(res => {
+                                                console.log(res.body)
+                                            })
+                                        })
+                                    })
+                                })
+                            })
+                        })
+                    })
+                })
+            })
+        })
+    })
+}
